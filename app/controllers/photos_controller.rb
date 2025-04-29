@@ -37,10 +37,11 @@ class PhotosController < ApplicationController
   end
 
   def update_photo
-    d = params.fetch("path_id")
+    id = params.fetch("path_id")
 
     input_image = params.fetch("query_image")
     input_caption = params.fetch("query_caption")
+    
 
     update_photo = Photo.where({ :id => id }).at(0)
     update_photo.image = input_image
