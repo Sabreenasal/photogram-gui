@@ -32,7 +32,7 @@
       <td><%= photo.poster.username %></td>
       <td><%= photo.caption %></td>
       <td><%= photo.created_at %></td>
-      <td><a href="">Show details</a></td>
+      <td><a href="/users/<%= photo.poster.username %>">Show details</a></td>
     </tr>
   <% end %>
 </table>
