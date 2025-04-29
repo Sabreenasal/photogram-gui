@@ -8,12 +8,15 @@ def index
 end
 
 def show 
-  url_username = params.fetch("path_username")
-  matching_usernames = User.where({ :username => url_username })
+  parameter = params.fetch("path_username")
 
-  @the_user = matching_usernames.first
+  @the_user = User.where({ :username => parameter }).at(0)
   
   render({ :template => "user_templates/show"})
+
+end
+
+def create
 
 end
 end
