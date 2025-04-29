@@ -1,38 +1,40 @@
 class UsersController < ApplicationController
-def index
-  matching_users = User.all
+  def index
+    matching_users = User.all
 
-  @list_of_users = matching_users.order({ :username => :asc })
+    @list_of_users = matching_users.order({ :username => :asc })
 
-  render({ :template => "user_templates/index"})
-end
+    render({ :template => "user_templates/index" })
+  end
 
-def show 
-  parameter = params.fetch("path_username")
+  def show
+    url_username = params.fetch("path_username")
 
-  @the_user = User.where({ :username => parameter }).at(0)
-  
-  render({ :template => "user_templates/show"})
+    matching_usernames = User.where({ :username => url_username })
 
-end
+    @the_user = matching_usernames.at(0)
+   
+    render({ :template => "user_templates/show" })
+  end
 
-def add_user
-  input_username = params.fetch("query_username")
+  def add_user
+    input_username = params.fetch("query_username")
 
-  add_user = User.new
-  add_user.username = input_username
-  add_user.save
+    add_user = User.new
+    add_user.username = input_username
+    add_user.save
 
-  redirect_to("/users/#{input_username}")
-end
-def update
-  id = params.fetch("path_id")
-  input_username = params.fetch("query_username")
+    redirect_to("/users/#{input_username}")
+  end
 
-  update_username = User.where({ :id => id }).at(0)
-  update_username.username = input_username
-  update_username.save
+  def update
+    id = params.fetch("path_id")
+    input_username = params.fetch("query_username")
 
-  redirect_to("/users/#{input_username}")
-end
+    update_username = User.where({ :id => id }).at(0)
+    update_username.username = input_username
+    update_username.save
+
+    redirect_to("/users/#{input_username}")
+  end
 end
