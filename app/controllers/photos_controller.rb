@@ -20,7 +20,7 @@ class PhotosController < ApplicationController
     redirect_to("/photos")
   end
 
-  def insert_photo
+  def create
     input_image = params.fetch("query_image")
     input_caption = params.fetch("query_caption")
     input_owner_id = params.fetch("query_owner_id")
@@ -36,7 +36,7 @@ class PhotosController < ApplicationController
     redirect_to("/photos/#{insert_photo.id}")
   end
 
-  def update_photo
+  def update
     id = params.fetch("path_id")
 
     input_image = params.fetch("query_image")
