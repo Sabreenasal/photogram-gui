@@ -10,7 +10,7 @@ end
 def show 
   parameter = params.fetch("path_username")
 
-  @user = User.where({ :username => parameter }).at(0)
+  @the_user = User.where({ :username => parameter }).at(0)
   
   render({ :template => "user_templates/show"})
 
